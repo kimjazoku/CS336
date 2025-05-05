@@ -9,7 +9,7 @@ MODEL_PATH = r"C:\models\phi3\Phi-3.5-mini-instruct-Q4_K_M.gguf"  # <-- Adjust t
 SCHEMA_FILE = "prelim.sql"  # Optional: put your CREATE TABLE statements here
 ILAB_USER = input("Enter your iLab NetID: ")
 ILAB_HOST = "cpp.cs.rutgers.edu"  # or specific node name
-REMOTE_SCRIPT_PATH = "/common/home/ksd102/csdata/project2/stub.py"  # Adjust this to the full path on ILAB
+REMOTE_SCRIPT_PATH = "/common/home/ksd102/csdata/project2/ilab_script.py"  # Adjust this to the full path on ILAB
 CTX_LEN = 2048
 MAX_TOKENS = 200
 
@@ -80,6 +80,10 @@ def run_query_on_ilab(sql_query):
 
         safe_query = sql_query.replace('"', '\\"')
         remote_cmd = f'python3 {REMOTE_SCRIPT_PATH} "{safe_query}"'
+        print("\n")
+        print(remote_cmd)
+        print("\n")
+
         stdin, stdout, stderr = client.exec_command(remote_cmd)
 
         output = stdout.read().decode()
@@ -111,6 +115,7 @@ def main():
         print("\nGenerated SQL Query:")
         print(sql_query)
         parsed_query = clean_response(sql_query)
+        print("\nEND OF GENERATED RESPONSE\n\n")
         run_query_on_ilab(parsed_query)
 
 
