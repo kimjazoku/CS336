@@ -67,8 +67,6 @@ def clean_response(text):
     first_select = re.search(r"(SELECT .*?;)", text, re.DOTALL | re.IGNORECASE)
     if first_select:
         return first_select.group(1).strip()
-    
-    # Fallback: Return original text (will error later if not a valid query)
     return text.strip()
 
 # === SSH & EXECUTE REMOTE QUERY ===
