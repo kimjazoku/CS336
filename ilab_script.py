@@ -5,19 +5,17 @@ import psycopg2
 import pandas as pd
 from getpass import getpass
 
+user = 'ksd102'
+
 def get_connection():
     # You can set these in your environment (e.g. export PGHOST=..., etc.)
     params = {
         "host":     os.getenv("PGHOST", "Postgres.cs.rutgers.edu"),
         "port":     os.getenv("PGPORT", "5432"),
-        "dbname":   os.getenv("PGDATABASE", os.getenv("PGUSER")),  # default DB = your user
-        "user":     os.getenv("PGUSER"),
-        "password": os.getenv("PGPASSWORD"),
+        "dbname":   os.getenv("PGDATABASE", user),  # default DB = your user
+        "user":     user,
+        "password": "",
     }
-
-    # If password isn’t in env, prompt for it
-    if not params["password"]:
-        params["password"] = getpass(f"Password for {params['user']}@{params['host']}: ")
 
     return psycopg2.connect(**params)
 
@@ -41,7 +39,7 @@ def main():
     if not sql:
         print("❌ ERROR: No SQL query provided. Pass it as an argument or via stdin.")
         sys.exit(1)
-
+    
     # 2) Execute and print results
     try:
         df = query_to_dataframe(sql)
@@ -53,4 +51,5 @@ def main():
 
 
 if __name__ == "__main__":
+    print("\n\nstubstarted")
     main()
