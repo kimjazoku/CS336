@@ -6,11 +6,11 @@ from llama_cpp import Llama
 
 # === CONFIG ===
 MODEL_PATH = r"C:\models\phi3\Phi-3.5-mini-instruct-Q4_K_M.gguf"  # <-- Adjust this path to fit wherever u installed the llm
-SCHEMA_FILE = "prelim.sql"  # Optional: put your CREATE TABLE statements here
+SCHEMA_FILE = "schema.sql"  # Optional: put your CREATE TABLE statements here
 ILAB_USER = input("Enter your iLab NetID: ")
 ILAB_HOST = "cpp.cs.rutgers.edu"  # or specific node name
-REMOTE_SCRIPT_PATH = "/common/home/ksd102/csdata/project2/ilab_script.py"  # Adjust this to the full path on ILAB
-CTX_LEN = 2048
+REMOTE_SCRIPT_PATH = "/common/home/ksd102/csdata/project2/stub.py"  # Adjust this to the full path on ILAB
+CTX_LEN = 2200
 MAX_TOKENS = 200
 
 
@@ -37,6 +37,7 @@ def generate_sql(llm, schema_text, user_question):
     prompt = f"""
 You are a SQL generation assistant.  
 Output **only** a single valid `SELECT` query (no markdown, no commentary), ending with a semicolon.
+When querying tables denial_reason and race, remember there is two tables that seperate the name, and its id/num (to application)
 
 === BEGIN SCHEMA ===
 {schema_text}
@@ -44,7 +45,7 @@ Output **only** a single valid `SELECT` query (no markdown, no commentary), endi
 
 === BEGIN EXAMPLES ===
 Q: What is the average applicant income?
-A: SELECT AVG(applicant_income) FROM mortgage;
+A: SELECT AVG(applicant_income_000s) FROM applications;
 === END EXAMPLES ===
 
 === BEGIN QUESTION ===
@@ -67,6 +68,8 @@ def clean_response(text):
     first_select = re.search(r"(SELECT .*?;)", text, re.DOTALL | re.IGNORECASE)
     if first_select:
         return first_select.group(1).strip()
+    
+    # Fallback: Return original text (will error later if not a valid query)
     return text.strip()
 
 # === SSH & EXECUTE REMOTE QUERY ===
@@ -80,10 +83,6 @@ def run_query_on_ilab(sql_query):
 
         safe_query = sql_query.replace('"', '\\"')
         remote_cmd = f'python3 {REMOTE_SCRIPT_PATH} "{safe_query}"'
-        print("\n")
-        print(remote_cmd)
-        print("\n")
-
         stdin, stdout, stderr = client.exec_command(remote_cmd)
 
         output = stdout.read().decode()
@@ -115,9 +114,13 @@ def main():
         print("\nGenerated SQL Query:")
         print(sql_query)
         parsed_query = clean_response(sql_query)
-        print("\nEND OF GENERATED RESPONSE\n\n")
         run_query_on_ilab(parsed_query)
 
 
 if __name__ == "__main__":
     main()
+
+# example question
+# How many mortgages have a loan value greater than the applicant income?
+#   What is the average income of owner occupied applications?
+# What is the most common loan denial reason?
