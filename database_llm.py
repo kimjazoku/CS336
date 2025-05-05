@@ -5,10 +5,10 @@ from llama_cpp import Llama
 
 # === CONFIG ===
 MODEL_PATH = r"C:\Users\Unreal\Downloads\model\Phi-3.5-mini-instruct-Q4_K_M.gguf"  # <-- Adjust this path to fit wherever u installed the llm
-SCHEMA_FILE = "schema.sql"  # Optional: put your CREATE TABLE statements here
+SCHEMA_FILE = "prelim.sql"  # Optional: put your CREATE TABLE statements here
 ILAB_USER = input("Enter your iLab NetID: ")
-ILAB_HOST = "ilab.rutgers.edu"  # or specific node name
-REMOTE_SCRIPT_PATH = "~/proj2/ilab_script.py"  # Adjust this to the full path on ILAB
+ILAB_HOST = "cpp.cs.rutgers.edu"  # or specific node name
+REMOTE_SCRIPT_PATH = "/common/home/jgk98/Desktop/300_Level/CS336/Proj2/ilab_script.py"  # Adjust this to the full path on ILAB
 CTX_LEN = 2048
 MAX_TOKENS = 200
 
@@ -34,15 +34,24 @@ def load_model():
 # === GENERATE SQL ===
 def generate_sql(llm, schema_text, user_question):
     prompt = f"""
-You are a helpful SQL assistant. Write a SQL SELECT query based on the schema and question.
+You are a SQL generation assistant.  
+Output **only** a single valid `SELECT` query (no markdown, no commentary), ending with a semicolon.
 
-### SCHEMA:
+=== BEGIN SCHEMA ===
 {schema_text}
+=== END SCHEMA ===
 
-### QUESTION:
+=== BEGIN EXAMPLES ===
+Q: What is the average applicant income?
+A: SELECT AVG(applicant_income) FROM mortgage;
+=== END EXAMPLES ===
+
+=== BEGIN QUESTION ===
 {user_question}
+=== END QUESTION ===
 
-### SQL:
+A:
+
 """
     output = llm(prompt, max_tokens=MAX_TOKENS)
     response = output["choices"][0]["text"].strip()
