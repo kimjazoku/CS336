@@ -21,3 +21,4 @@ Change the username, location of environment, and location of the stub program
 ### database_llm.py
 Change the file path to where you have phi-3.5-mini installed
 Change the REMOTE_SCRIPT_PATH to where you have the stub program stored
+Make sure to have the preliminary sql file stored in the same directory as database_llm.py
