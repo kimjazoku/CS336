@@ -19,5 +19,5 @@ pip install psycopg pandas tabulate
 Change the username, location of environment, and location of the stub program
 
 ### database_llm.py
-
 Change the file path to where you have phi-3.5-mini installed
+Change the REMOTE_SCRIPT_PATH to where you have the stub program stored
