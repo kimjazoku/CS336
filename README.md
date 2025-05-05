@@ -22,3 +22,33 @@ Change the username, location of environment, and location of the stub program
 Change the file path to where you have phi-3.5-mini installed
 Change the REMOTE_SCRIPT_PATH to where you have the stub program stored
 Make sure to have the preliminary sql file stored in the same directory as database_llm.py
+===============================================================================================================
+### Team Members
+Jake Kim jgk98,
+Keith Andre Denila ksd102,
+Sean La Peruta stl71, 
+Hunter Nadolski htn52
+
+### Contributions
+ilab_script.py - jgk98 & stl71
+database_lim.py - jgk98 & stl71 & ksd102
+               tunnel - jgk98 & stl71
+               parsing - ksd102
+schema.sql - ksd102
+
+### Challenges & Interests
+One challenge was the actual prompting of the llm to create an sql query using the user's question. 
+It was difficult to find a consistant 'schema' to the llm response. Especially when it either cuts 
+out randomly or just forgets semi-colons for no reason. Changing up the sql script for the schema sent
+to the llm fixed most of the problems mostly. It is still very wishy washy with the responses at times.
+
+Another challenge was the ssh tunnel. Especially when trying to make sure all the user interactions can come through
+the tunnel and getting the output. As well as making sure that the actual script in the ilab was being used.
+
+Something interesting was how closely tied the sql schema that was fed into the llm is to the actual response it gives.
+We had to reduce the schema a bit from the actual sql script that created tables to form the actual db. Adding some comments
+to portions that it was not correctly referencing also made it "understand" the schema of the db more.
+
+### Extra Credit
+No?
+
