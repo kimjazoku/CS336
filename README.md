@@ -33,10 +33,10 @@ Sean La Peruta stl71,
 Hunter Nadolski htn52
 
 ### Contributions
-ilab_script.py - jgk98 & stl71
-database_lim.py - jgk98 & stl71 & ksd102
-               tunnel - jgk98 & stl71
-               parsing - ksd102
+ilab_script.py - jgk98 & stl71,
+database_lim.py - jgk98 & stl71 & ksd102,
+               tunnel - jgk98 & stl71,
+               parsing - ksd102,
 schema.sql - ksd102
 
 ### Challenges & Interests
