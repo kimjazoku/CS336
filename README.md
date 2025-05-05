@@ -25,20 +25,30 @@ Change the REMOTE_SCRIPT_PATH to where you have the stub program stored
 Make sure to have the preliminary sql file stored in the same directory as database_llm.py
 
 #README
-### Team Members
-Jake Kim jgk98,
-Keith Andre Denila ksd102,
-Sean La Peruta stl71, 
-Hunter Nadolski htn52
+===============================================================================================================
+## Team Members
+- Jake Kim (jgk98)
+- Keith Andre Denila (ksd102) 
+- Sean La Peruta (stl71)
+- Hunter Nadolski (htn52)
 
-### Contributions
-ilab_script.py - jgk98 & stl71,
-database_lim.py - jgk98 & stl71 & ksd102,
-               tunnel - jgk98 & stl71,
-               parsing - ksd102,
-schema.sql - ksd102
+## Contributions
+**ilab_script.py**  
+- jgk98 & stl71  
 
-### Challenges & Interests
+**database_llm.py**  
+- jgk98 & stl71 & ksd102  
+
+**SSH Tunnel Implementation**  
+- jgk98 & stl71  
+
+**Query Parsing**  
+- ksd102  
+
+**schema.sql**  
+- ksd102  
+
+## Challenges & Interests
 One challenge was the actual prompting of the llm to create an sql query using the user's question. 
 It was difficult to find a consistant 'schema' to the llm response. Especially when it either cuts 
 out randomly or just forgets semi-colons for no reason. Changing up the sql script for the schema sent
