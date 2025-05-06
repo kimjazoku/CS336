@@ -64,3 +64,7 @@ to portions that it was not correctly referencing also made it "understand" the 
 ### Extra Credit
 No?
 
+### Transcripts
+https://chatgpt.com/share/68193824-165c-800c-8ac8-874d5274dadf
+
+
