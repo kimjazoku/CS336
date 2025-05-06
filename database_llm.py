@@ -69,12 +69,21 @@ A:
 
 
 def clean_response(text):
-    text = re.sub(r"```(?:sql)?\n.*?```", "", text, flags=re.DOTALL | re.IGNORECASE).strip()
-    first_select = re.search(r"(SELECT .*?;)", text, re.DOTALL | re.IGNORECASE)
-    if first_select:
-        return first_select.group(1).strip()
-    
-    # Fallback: Return original text (will error later if not a valid query)
+    # 1) If there’s a ```…``` block, grab exactly what’s inside it
+    fence_match = re.search(
+        r"```(?:sql)?\s*([\s\S]*?;)\s*```",
+        text,
+        re.IGNORECASE
+    )
+    if fence_match:
+        return fence_match.group(1).strip()
+
+    # 2) Fallback to the first SELECT…; you find anywhere
+    bare_match = re.search(r"(SELECT\b[\s\S]*?;)", text, re.IGNORECASE)
+    if bare_match:
+        return bare_match.group(1).strip()
+
+    # 3) Last resort, return the raw text
     return text.strip()
 
 # === SSH & EXECUTE REMOTE QUERY ===
