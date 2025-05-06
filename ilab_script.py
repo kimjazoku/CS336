@@ -5,8 +5,7 @@ import psycopg2
 import pandas as pd
 from getpass import getpass
 
-user = 'ksd102'
-
+user = 'jgk98' # update user to your username
 def get_connection():
     # You can set these in your environment (e.g. export PGHOST=..., etc.)
     params = {
