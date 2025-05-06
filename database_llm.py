@@ -4,12 +4,16 @@ import re
 import paramiko
 from llama_cpp import Llama
 
+# to execute: .\llm_env\Scripts\Activate.ps1
+# then: python database_llm.py
+
+
 # === CONFIG ===
-MODEL_PATH = r"C:\models\phi3\Phi-3.5-mini-instruct-Q4_K_M.gguf"  # <-- Adjust this path to fit wherever u installed the llm
+MODEL_PATH = r"C:\Users\Unreal\Downloads\models\Phi-3.5-mini-instruct-Q4_K_M.gguf"  # <-- Adjust this path to fit wherever u installed the llm
 SCHEMA_FILE = "schema.sql"  # Optional: put your CREATE TABLE statements here
 ILAB_USER = input("Enter your iLab NetID: ")
 ILAB_HOST = "cpp.cs.rutgers.edu"  # or specific node name
-REMOTE_SCRIPT_PATH = "/common/home/ksd102/csdata/project2/stub.py"  # Adjust this to the full path on ILAB
+REMOTE_SCRIPT_PATH = "/common/home/jgk98/Desktop/300_Level/CS336/Proj2/ilab_script.py"  # <-- Adjust this to the full path on ILAB
 CTX_LEN = 2200
 MAX_TOKENS = 200
 
@@ -65,6 +69,7 @@ A:
 
 
 def clean_response(text):
+    text = re.sub(r"```(?:sql)?\n.*?```", "", text, flags=re.DOTALL | re.IGNORECASE).strip()
     first_select = re.search(r"(SELECT .*?;)", text, re.DOTALL | re.IGNORECASE)
     if first_select:
         return first_select.group(1).strip()
@@ -122,5 +127,5 @@ if __name__ == "__main__":
 
 # example question
 # How many mortgages have a loan value greater than the applicant income?
-#   What is the average income of owner occupied applications?
+# What is the average income of owner occupied applications?
 # What is the most common loan denial reason?
