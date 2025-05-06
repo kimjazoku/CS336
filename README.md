@@ -66,6 +66,7 @@ No?
 
 ### Transcripts
 https://chatgpt.com/share/68193824-165c-800c-8ac8-874d5274dadf
+https://chatgpt.com/share/6819683e-c828-8007-b020-250c1a0244a7
 
 ### Video
 https://drive.google.com/file/d/1SR5ZQ7-vsBCHRx88KhehL5gR0-2IsDA_/view?usp=sharing
