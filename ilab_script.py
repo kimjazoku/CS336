@@ -33,7 +33,7 @@ def main():
     if len(sys.argv) > 1:
         sql = sys.argv[1]
     else:
-        sql = sys.stdin.read().strip()
+        sql = input().strip()
 
     if not sql:
         print("❌ ERROR: No SQL query provided. Pass it as an argument or via stdin.")

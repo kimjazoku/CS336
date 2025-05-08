@@ -7,7 +7,7 @@ import sys
 # Configure before running
 user = 'htn52'
 env_path = 'source ~/336/2_project/projenv/bin/activate'
-stub_path = '~/336/2_project/stub.py'
+stub_path = '~/336/2_project/ilab_script.py'
 
 # Would be whatever the parsed query is
 # Make sure to enclose in quotes
