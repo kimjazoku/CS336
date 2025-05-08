@@ -10,8 +10,11 @@ so I had to make a new one.
 
 #### Creating environment
 python3 -m venv ~/myenv
+
 source ~/myenv/bin/activate
+
 pip install --upgrade pip setuptools wheel
+
 pip install psycopg pandas tabulate
 
 ### Tunnel
@@ -21,7 +24,9 @@ Change the username, location of environment, and location of the stub program
 ### database_llm.py
 
 Change the file path to where you have phi-3.5-mini installed
+
 Change the REMOTE_SCRIPT_PATH to where you have the stub program stored
+
 Make sure to have the preliminary sql file stored in the same directory as database_llm.py
 
 #README
@@ -70,5 +75,3 @@ https://chatgpt.com/share/6819683e-c828-8007-b020-250c1a0244a7
 
 ### Video
 https://drive.google.com/file/d/1SR5ZQ7-vsBCHRx88KhehL5gR0-2IsDA_/view?usp=sharing
-
-

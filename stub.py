@@ -2,7 +2,7 @@ import psycopg2
 import pandas as pd
 import sys
 
-user = 'stl71'
+user = 'htn52'
 
 def query_to_dataframe(sql):
     conn = psycopg2.connect(
@@ -25,10 +25,10 @@ def query_to_dataframe(sql):
 
     return df
 
-if len(sys.argv) == 1:
-	pass
-else:
+if len(sys.argv) > 1:
 	sql = sys.argv[1]
+else:
+	sql = input()
 
 # sql = "SELECT as_of_year, agency_name FROM preliminary limit 1;"
 df = query_to_dataframe(sql)
