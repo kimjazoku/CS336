@@ -53,6 +53,9 @@ Make sure to have the preliminary sql file stored in the same directory as datab
 **schema.sql**  
 - ksd102  
 
+**stub.py/tunnel.py extra credit**
+- htn52
+
 ## Challenges & Interests
 One challenge was the actual prompting of the llm to create an sql query using the user's question. 
 It was difficult to find a consistant 'schema' to the llm response. Especially when it either cuts 
@@ -67,7 +70,7 @@ We had to reduce the schema a bit from the actual sql script that created tables
 to portions that it was not correctly referencing also made it "understand" the schema of the db more.
 
 ### Extra Credit
-No?
+Single point extra credit for stub.py/tunnel.py stdin implementation
 
 ### Transcripts
 https://chatgpt.com/share/68193824-165c-800c-8ac8-874d5274dadf
